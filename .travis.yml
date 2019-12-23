@@ -1,5 +1,5 @@
 os: linux
-dist: xenial
+dist: bionic
 arch:
   - ppc64le
   - amd64
