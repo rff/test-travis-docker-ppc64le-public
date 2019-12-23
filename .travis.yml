@@ -12,5 +12,6 @@ language: bash
 script:
   - echo $TRAVIS_CPU_ARCH
   - uname -a
+  - file /bin/bash
   - cat /etc/os-release
   - id
