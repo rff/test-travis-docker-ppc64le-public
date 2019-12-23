@@ -1,0 +1,16 @@
+os: linux
+dist: bionic
+arch:
+  - amd64
+  - ppc64le
+
+language: bash
+
+#services:
+#  - docker
+
+script:
+  - echo $TRAVIS_CPU_ARCH
+  - uname -a
+  - cat /etc/os-release
+  - id
