@@ -6,7 +6,7 @@ arch:
 
 os: linux
 
-dist: bionic
+dist: xenial
 
 
 services:
