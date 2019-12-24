@@ -23,9 +23,11 @@ script:
   - cat /etc/os-release
   - id
   - cat /proc/1/cgroup
+  - running-in-container
   - docker run ubuntu:18.04  uname -a
   - docker run ubuntu:18.04  which bash
   - docker run ubuntu:18.04  cat /etc/os-release
   - docker run ubuntu:18.04  id
-  - docler run ubuntu:18.04  cat /proc/1/cgroup
+  - docker run ubuntu:18.04  cat /proc/1/cgroup
+  - docker run ubuntu:18.04  running-in-container
 
