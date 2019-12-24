@@ -18,11 +18,13 @@ before_install:
 script:
   - echo $TRAVIS_CPU_ARCH
   - uname -a
+  - which bash
   - file /bin/bash
   - cat /etc/os-release
   - id
   - docker run ubuntu:18.04  uname -a
-  - docker run ubuntu:18.04  file /bin/bash
+  - docker run ubuntu:18.04  which bash
+  - docker run ubuntu:18.04  file /usr/bin/bash
   - docker run ubuntu:18.04  cat /etc/os-release
   - docker run ubuntu:18.04  id
 
