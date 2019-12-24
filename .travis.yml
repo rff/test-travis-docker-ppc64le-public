@@ -21,5 +21,8 @@ script:
   - file /bin/bash
   - cat /etc/os-release
   - id
+  - docker run ubuntu:18.04  uname -a
+  - docker run ubuntu:18.04  file /bin/bash
   - docker run ubuntu:18.04  cat /etc/os-release
+  - docker run ubuntu:18.04  id
 
