@@ -13,6 +13,7 @@ services:
   - docker
 
 before_install:
+  - docker image ls
   - docker pull ubuntu:18.04
 
 script:
@@ -23,6 +24,7 @@ script:
   - cat /etc/os-release
   - id
   - cat /proc/1/cgroup
+  - docker image ls
   - docker run ubuntu:18.04  uname -a
   - docker run ubuntu:18.04  which bash
   - docker run ubuntu:18.04  cat /etc/os-release
