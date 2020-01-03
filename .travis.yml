@@ -17,6 +17,7 @@ before_install:
   - docker pull ubuntu:18.04
 
 script:
+  - echo "ARCH & basic info"
   - echo $TRAVIS_CPU_ARCH
   - hostname
   - uname -a
@@ -24,7 +25,20 @@ script:
   - file /bin/bash
   - cat /etc/os-release
   - id
+  - echo "CONTAINER DETECT"
   - cat /proc/1/cgroup
+  - sudo cat /proc/1/environ
+  - cat /proc/1/mountinfo
+  - ls /dev/lxd
+  - systemd-detect-virt
+  - cat /run/systemd/container
+  - echo "(K)VM DETECT"
+  - lscpu
+  - cat /proc/cpuinfo
+  - sudo dmesg | grep -ie kvm -ie hypervisor -ie virtual
+  - sudo dmidecode -s 'system-product-name'
+  - sudo dmidecode -t system | grep 'Manufacturer\|Product'
+  - echo "DOCKER info"
   - docker --version
   - sudo cat /etc/docker/daemon.json
   - docker image ls
@@ -36,6 +50,7 @@ script:
   - docker run ubuntu:18.04  cat /proc/1/cgroup
   - docker run ubuntu:18.04  echo '$PATH'
   - docker run ubuntu:18.04  ls /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin
+  - echo "DOCKER run tests"
   - docker --debug --log-level debug run --rm ubuntu:18.04 id
   - docker --debug --log-level debug run --rm --privileged ubuntu:18.04 id
   - docker --debug --log-level debug run --rm -it ubuntu:18.04 id
