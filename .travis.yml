@@ -38,6 +38,11 @@ script:
   - sudo dmesg | grep -ie kvm -ie hypervisor -ie virtual
   - sudo dmidecode -s 'system-product-name'
   - sudo dmidecode -t system | grep 'Manufacturer\|Product'
+  - echo "MOUNT/DISK/RAM info"
+  - free -h
+  - lsblk
+  - df -h
+  - mount
   - echo "DOCKER info"
   - docker --version
   - sudo cat /etc/docker/daemon.json
