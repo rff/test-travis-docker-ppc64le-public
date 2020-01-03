@@ -34,4 +34,21 @@ script:
   - docker run ubuntu:18.04  cat /etc/os-release
   - docker run ubuntu:18.04  id
   - docker run ubuntu:18.04  cat /proc/1/cgroup
-
+  - docker --debug --log-level debug run --rm ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --privileged ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm -it ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --privileged -it ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --privileged=false ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --privileged=true  ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --cap-add=ALL ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --cap-add=ALL --privileged ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --device /dev/tty ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --security-opt seccomp=unconfined ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --security-opt seccomp=unconfined --cap-add=ALL -it seccomp=unconfined ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --security-opt seccomp=unconfined -it seccomp=unconfined ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --security-opt seccomp=unconfined --device /dev/tty -it seccomp=unconfined ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --security-opt seccomp=unconfined --cap-add=ALL --privileged -it seccomp=unconfined ubuntu:18.04 file /bin/bash
+  - docker --debug --log-level debug run --rm --cap-add=ALL -it ubuntu:18.04 /bin/bash
+  - sudo docker --debug --log-level debug run --rm ubuntu:18.04 file /bin/bash
+  - sudo docker --debug --log-level debug run --rm --privileged ubuntu:18.04 file /bin/bash
+  - sudo docker --debug --log-level debug run --rm -it ubuntu:18.04 file /bin/bash
