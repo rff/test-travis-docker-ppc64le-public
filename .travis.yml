@@ -49,6 +49,7 @@ script:
   - docker image ls
   - docker image inspect ubuntu:18.04
   - docker image inspect --format '{{.Config.Architecture}}' ubuntu:18.04
+  - docker image inspect --format '{{.Config}}' ubuntu:18.04
   - docker run ubuntu:18.04  uname -a
   - docker run ubuntu:18.04  which bash
   - docker run ubuntu:18.04  cat /etc/os-release
