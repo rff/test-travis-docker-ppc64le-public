@@ -62,12 +62,12 @@ script:
   - echo "DOCKER tmpfs mount info & test"
   - sudo mkdir --mode=1777 /tmp-docker
   - sudo mount -t tmpfs none /tmp-docker -osize=6G
-  - mount
+  - bash -c 'mount | grep -w /tmp-docker'
   - stat /tmp-docker
-  - docker run --rm ubuntu:18.04 stat /tmp
-  - docker run --rm -v /tmp-docker:/tmp ubuntu:18.04 stat /tmp
-  - docker run --rm --tmpfs /tmp:size=6G ubuntu:18.04 stat /tmp
-  - docker run --rm --tmpfs /tmp:size=6G,mode=1777,uid=0,gid=0 ubuntu:18.04 stat /tmp
+  - docker run --rm ubuntu:18.04 bash -c 'stat /tmp ; mount | grep -w /tmp'
+  - docker run --rm -v /tmp-docker:/tmp ubuntu:18.04 bash -c 'stat /tmp ; mount | grep -w /tmp'
+  - docker run --rm --tmpfs /tmp:size=6G ubuntu:18.04 bash -c 'stat /tmp ; mount | grep -w /tmp'
+  - docker run --rm --tmpfs /tmp:size=6G,mode=1777,uid=0,gid=0 ubuntu:18.04 bash -c 'stat /tmp ; mount | grep -w /tmp'
   - echo "DOCKER run tests"
   - docker --debug --log-level debug run --rm ubuntu:18.04 id
   - docker --debug --log-level debug run --rm --privileged ubuntu:18.04 id
