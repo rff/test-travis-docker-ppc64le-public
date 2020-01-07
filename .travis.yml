@@ -59,6 +59,15 @@ script:
   - docker run ubuntu:18.04  cat /proc/1/cgroup
   - docker run ubuntu:18.04  echo '$PATH'
   - docker run ubuntu:18.04  ls /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin
+  - echo "DOCKER tmpfs mount info & test"
+  - sudo mkdir --mode=1777 /tmp-docker
+  - sudo mount -t tmpfs none /tmp-docker -osize=6G
+  - mount
+  - stat /tmp-docker
+  - docker run --rm ubuntu:18.04 stat /tmp
+  - docker run --rm -v /tmp-docker:/tmp ubuntu:18.04 stat /tmp
+  - docker run --rm --tmpfs /tmp:size=6G ubuntu:18.04 stat /tmp
+  - docker run --rm --tmpfs /tmp:size=6G,mode=1777,uid=0,gid=0 ubuntu:18.04 stat /tmp
   - echo "DOCKER run tests"
   - docker --debug --log-level debug run --rm ubuntu:18.04 id
   - docker --debug --log-level debug run --rm --privileged ubuntu:18.04 id
