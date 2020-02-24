@@ -18,6 +18,7 @@ env:
   matrix:
     - BAR=arch_all
     - BAR=arch_ppc64le
+      arch: ppc64le
     - BAR=arch_amd64
     - BAR=arch_ppc64le FOO=local
 
