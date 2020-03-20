@@ -22,7 +22,7 @@ matrix:
   include:
     - env: BAR=arch_amd64
       arch: amd64
-    - BAR=arch_ppc64le
+    - env: BAR=arch_ppc64le
       arch: ppc64le
     - env: BAR=arch_ppc64le FOO=local
 
@@ -36,3 +36,4 @@ script:
   - cat /etc/os-release
   - id
   - echo "FOO=$FOO  BAR=$BAR"
+  - sudo dmesg
